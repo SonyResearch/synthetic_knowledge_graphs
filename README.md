@@ -17,6 +17,11 @@ To use the datasets and code in this repository, follow these steps:
     poetry install
     ```
 
+- Run tests to validate installation
+
+    ```shell
+    pytest tests
+    ```
 
 
 ## Datasets
