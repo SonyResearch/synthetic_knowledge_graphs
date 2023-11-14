@@ -125,22 +125,15 @@ class UserItemAttrDataset(SyntheticDataset):
 
     def get_explanation(self, head: str, relation: str, tail: str):
         explanation = []
+        explanation.append((head, relation, tail))
         if Relation.HELD_BY in relation:
-            explanation.append((head, relation, tail))
+            pass
         elif Relation.BOUGHT_BY in relation:
             assert EntityType.USER in tail
-            explanation.append((head, relation, tail))
 
-            item_names = self.graph.predecessors(tail)
             attr_name = self.graph.nodes[tail]["attribute"]
+            explanation.append((attr_name, Relation.HELD_BY, head))
 
-            for item_name in item_names:
-                explanation.append((attr_name, Relation.HELD_BY, item_name))
-                explanation.append((item_name, Relation.BOUGHT_BY, tail))
-
-                # Assert the edges exist in the graph
-                assert self.graph.has_edge(attr_name, item_name)
-                assert self.graph.has_edge(item_name, tail)
         explanation = tuple(item for sublist in explanation for item in sublist)
 
         return explanation
