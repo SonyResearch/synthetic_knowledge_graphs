@@ -76,7 +76,13 @@ pytest tests/test_user_item_attr.py
 
 To create and work with the FTREE dataset, execute the following command:
 ```shell
+
+# Create a dataset where items only have one attribute
 python scripts/create_user_item_attr.py --name UserItemAttr_V0 --num_attrs 20 --num_items 200 --num_users 200 --lambda_a 0.0 --lambda_i 20.0 --percentages 0.8 0.1 0.1 --seed 0 
+
+# Create a dataset where items only have more than one attribute
+python scripts/create_user_item_attr.py --name UserItemAttr_V1 --num_attrs 20 --num_items 200 --num_users 200 --lambda_a 2.0 --lambda_i 20.0 --percentages 0.8 0.1 0.1 --seed 0 
+
 ```
 
 
